@@ -7,3 +7,4 @@ package com.example.todolist.model; import jakarta.persistence.*;
     public String getUsername() { return username; } Public void setUsername(String username) { this.username = username; }
     public String getPassword(){ return password; } public void setPassword(String password){ this.password = password; }
 }
+
