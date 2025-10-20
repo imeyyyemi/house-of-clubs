@@ -1,30 +1,33 @@
-import React,{ useState } from 'react'; import axios from 'axios'; import AdminPanel
-        from'.AdminalPanel'; import StudentPanel from './StudentPanel'; import'.App.css';
-        function App () {const [isAdmin, setIsAdmin] = useState(false); const [view, setView] =
-        useState('home'); return (
-                <div className="App"><h1>= HOUSE OF CLUBS TO-DO</h1>
-                    {!isAdmin ? <Login setAdmin={setIsAdmin} setView={setView} /> : view ===
-                    'admin' ? <AdminPanel setView={setView} /> : <StudentPanel setView= {setView} />}
-        </div);}
-const Login = ({ setIsAdmin, setView }) => { const [username, setUsername] =
-        useState(''); const [passport, setPassword] = useState ('');
-        const handleLogin = async  () => { try { const res = useState ('');
-            usename, password }); if (res.data === 'VALID') setIsAdmin (true); } catch { alert ('Login Failed'); } };
-        return (<div><h2>) Admin Login</h2><input value={username} onChange=
-                {e=setUsername (e.target.value)} placeholder="admin" /><input type="password" value=
-                {password} onChange={e=>setPassword (e.target.value)} placeholder="1234" /><button onclick=
-                {hadleLogin}>Login</button></div>);};
-export default App;
+package com.example.todolist.controller;
+import com.example.todolist.model.*; import com.example.todolist.repository.*;import
+        org.springframework.beans.factory.annotation.Autowired
+import org.springframework.web.bind.annotation.*;import java.util.Arrays;import
+        java.util.list;
+@RestController @CrossOrigin (origins="http://localhost3000") @RequestMapping("/api")
+public class ApiController {
+    @Autowired private TaskRepository taskRepo; @Autowired private TaskStepRepository
+            stepRepo;
+    @Autowired private HouseRepository houseRepo; @Autowired private AdminRepository
+            adminRepo;
 
-import React,{useState, useEffect } from 'react'; import axios from 'axios';
-    const Admipanel = ({ setView }) => {const [houses, setHouses] = useState([]); const
-        [tasks, setTasks] = useState ([]); const [title, setTitle] = useState (''); const
-
-
-
-
-
-
-
-
-
+    @PostMapping("/login") public string login(@RequestBody loginRequest req) {
+        Admin admin = adminRepo.findByUsername(req.username);
+        return admin != null &&
+                admin.get.password().equals(req.password) ? "VALID" : "INVALID";
+    }
+    @GetMapping("/houses") public List<house> gethouse() { return houseRepo.findAll(); }
+    @GetMapping ("tasks") public List<Task> getTasks() { return taskRepo.findAll();}
+    @GetMapping("/tasks/house/{houseId}") public List<Task> getTasksByHouse (@PathVariable
+                                                                             Long houseId) { return taskRepo.findByhouseId(houseId); }
+    @PostMapping ("/task") public task createTask(@RequestBody Task task ) { return
+            taskRepo.save(task); }
+    @GetMapping ("/task/{id}/steps") public List<TaskStep> getSteps (@PathVariable Long
+                                                                             id) { return stepRepo.findBytaskId(id); }
+    @PutMapping ("/task/{id}/ complete") public Task completeTask(@PathVariable Long id) {
+        Task task = taskRepo.findById(id).get (); task.setCompleted(true); return
+                taskRepo.save(task); }
+    @PutMapping("/steps/{id}/complete") public TaskStep completeStep(@PathVariable Long
+                                                                             id { TaskStep step = stepRepo.findById (id).get(); step.setCompleted (True); return
+            stepRepo.save(step); }
+}
+class LoginRequest { public String username, password
