@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Login from './components/Login';
 import Register from './components/Register';
 import TodoList from './components/TodoList';
-import api from './utils/api';
+import api from './util/api';
 
 function App() {
   const [user, setUser] = useState(null);
