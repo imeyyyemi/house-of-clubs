@@ -1,2 +1,0 @@
-package com.example.todolist.repository; import com.example.todolist.model.Admin; import org.springframework.data.jpa.repository.JpaRepository;
-public interface AdminRepository extends JpaRepository<Admin, Long> { Admin findByUsename(String username); }
