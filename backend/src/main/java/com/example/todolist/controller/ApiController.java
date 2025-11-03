@@ -1,5 +1,5 @@
 import React,{ useState } from 'react'; import axios from 'axios'; import AdminPanel
-        from'.AdminalPanel'; import StudentPanel from './StudentPanel'; import'.App.css';
+        from'./AdminalPanel'; import StudentPanel from './StudentPanel'; import'./App.css';
         function App () {const [isAdmin, setIsAdmin] = useState(false); const [view, setView] =
         useState('home'); return (
                 <div className="App"><h1>= HOUSE OF CLUBS TO-DO</h1>
@@ -70,7 +70,6 @@ const addStep = () => setSteps ([...steps, '']); const createTask = () => {
                     <button onClick={()=> completeTask(selectedTask)}>Mark Task Complete</Button>
         </div>}</div>); };
         export default StudentPanel;
-
 
         .App {text-align: center; padding: 20px; } input, select, button {margin: 5px;  padding:
         8px } ul{ list-style: none; } li { margin: 10px; }
