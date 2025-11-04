@@ -31,7 +31,19 @@ function App() {
   };
 
   return (
-   
+    <div className="min-h-screen bg-gray-100 p-4">
+      <header className="mb-4 text-center">
+        <h1 className="text-3xl font-bold text-blue-600">🏠 House of Clubs To-Do List</h1>
+      </header>
+      {user ? (
+        <div>
+          <p className="mb-2 text-sm text-gray-600">Welcome, {user.username}!</p>
+          <button onClick={handleLogout} className="mb-4 px-4 py-2 bg-red-500 text-white rounded">
+            Logout
+          </button>
+          <TodoList userId={user.id} />
+        </div>
+      ) : (
         <div className="max-w-md mx-auto">
           <button onClick={() => setIsRegister(!isRegister)} className="mb-4 px-4 py-2 bg-blue-500 text-white rounded">
             {isRegister ? 'Login' : 'Register'}
