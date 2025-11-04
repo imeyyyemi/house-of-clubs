@@ -13,19 +13,6 @@ import java.util.List;
 public class TaskController {
     @Autowired private TaskRepository taskRepository;
 
-    @GetMapping
-    public List<Task> getTasks(HttpSession session) {
-        String username = ((com.example.todolist.model.User) session.getAttribute("user")).getUsername();
-        return taskRepository.findByUserUsername(username);
-    }
-
-    @PostMapping
-    public ResponseEntity<?> createTask(@RequestBody Task task, HttpSession session) {
-        String username = ((com.example.todolist.model.User) session.getAttribute("user")).getUsername();
-        task.setUser(((com.example.todolist.model.User) session.getAttribute("user")));
-        taskRepository.save(task);
-        return ResponseEntity.ok(task);
-    }
 
     @PutMapping("/{id}")
     public ResponseEntity<?> updateTask(@PathVariable Long id, @RequestBody Task updatedTask, HttpSession session) {
