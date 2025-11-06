@@ -106,9 +106,9 @@ const TodoList = ({ userId }) => {
                 <input
                   type="checkbox"
                   checked={task.completed}
-                  onChange={(e) => handleToggleComplete(task.id, e.target.checked)}
+                  onchange={(e) => handleTogglecomplete(task.id, e.target.checked)}
                   className="ml-4 mr-2"
-                />
+                  />
                 <span className={task.completed ? 'line-through text-gray-500' : ''}>
                   {task.completed ? 'Completed' : 'Pending'}
                 </span>
